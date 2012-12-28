@@ -29,7 +29,7 @@ window.onload = function() {
 
 			circle.animate = function() {
 				if(circle.topOffset < (stage.width - circle.width)) {
-					circle.topOffset += 1;
+					circle.topOffset += 1; // speed
 					circle.element.style.top = circle.topOffset + "px";
 				} else {
 					if(circle.animateInterval) {
@@ -50,15 +50,32 @@ window.onload = function() {
 			var x = 0;
 
 			circle.animate = function() {
-				console.log(x);
 				circle.topOffset = (stage.height - circle.height) * Math.sin(x)/2 + (stage.height/2 - circle.radius);
-				x += 0.05;
+				x += 0.05; // speed
 				circle.element.style.top = circle.topOffset + "px";
 			};
 			circle.animateInterval = setInterval(circle.animate, 5);
 		},
 		function animation3(params) {
-			console.log("Animation 3");
+			var circle = createCircle();
+			params.stage.element.appendChild(circle.element);
+			circle.width = circle.element.offsetWidth;
+			circle.height = circle.element.offsetHeight;
+			circle.radius = circle.width/2;
+
+			circle.topOffset = 0;
+			circle.leftOffset = 0;
+			var x = 0;
+
+			circle.animate = function() {
+				console.log(x);
+				circle.topOffset = (stage.height - circle.height) * Math.sin(x)/2 + (stage.height/2 - circle.radius);
+				circle.leftOffset = (stage.height - circle.height) * Math.cos(x)/2 + (stage.height/2 - circle.radius);
+				x += 0.02; // speed
+				circle.element.style.top = circle.topOffset + "px";
+				circle.element.style.left = circle.leftOffset + "px";
+			};
+			circle.animateInterval = setInterval(circle.animate, 5);
 		},
 		function animation4(params) {
 			console.log("Animation 4");
