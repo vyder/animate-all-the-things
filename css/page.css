@@ -1,0 +1,37 @@
+body {
+	background-color: #053B44;
+	margin: 0;
+	padding: 0;
+}
+
+div#container {
+	width: 960px;
+	margin: 0 auto;
+
+	padding-top: 20px;
+	position: relative;
+}
+
+div.stage {
+	width: 215px;
+	height: 215px;
+	margin-left: 20px;
+	margin-top: 20px;
+	float: left;
+	
+	background-color: #06736C;
+	position: relative;
+}
+
+div.thing {
+	background-color: #EAD075;
+	border: 1px solid #EAD075;
+
+	position: absolute;
+}
+
+div.circle {
+	-webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+}
