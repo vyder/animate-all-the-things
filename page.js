@@ -26,15 +26,13 @@ window.onload = function() {
 			circle.radius = circle.width/2;
 
 			circle.topOffset = 0;
+			var x = 1;
 
 			circle.animate = function() {
-				if(circle.topOffset < (stage.width - circle.width)) {
-					circle.topOffset += 1; // speed
-					circle.element.style.top = circle.topOffset + "px";
-				} else {
-					if(circle.animateInterval) {
-						clearInterval(circle.animateInterval);
-					}
+				circle.topOffset += x; // speed
+				circle.element.style.top = circle.topOffset + "px";
+				if(circle.topOffset === (stage.width - circle.width) || circle.topOffset === 0) {
+					x *= -1;
 				}
 			};
 			circle.animateInterval = setInterval(circle.animate, 5);
