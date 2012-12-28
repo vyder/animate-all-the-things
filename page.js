@@ -1,4 +1,5 @@
 window.onload = function() {
+
 	var createCircle = function( ) {
 		var circleElement = document.createElement('div');
 		circleElement.className = "thing circle";
@@ -22,11 +23,12 @@ window.onload = function() {
 			params.stage.element.appendChild(circle.element);
 			circle.width = circle.element.offsetWidth;
 			circle.height = circle.element.offsetHeight;
+			circle.radius = circle.width/2;
 
 			circle.topOffset = 0;
 
 			circle.animate = function() {
-				if(circle.topOffset < (215 - 45)) {
+				if(circle.topOffset < (stage.width - circle.width)) {
 					circle.topOffset += 1;
 					circle.element.style.top = circle.topOffset + "px";
 				} else {
@@ -38,7 +40,22 @@ window.onload = function() {
 			circle.animateInterval = setInterval(circle.animate, 5);
 		},
 		function animation2(params) {
-			console.log("Animation 2");
+			var circle = createCircle();
+			params.stage.element.appendChild(circle.element);
+			circle.width = circle.element.offsetWidth;
+			circle.height = circle.element.offsetHeight;
+			circle.radius = circle.width/2;
+
+			circle.topOffset = 0;
+			var x = 0;
+
+			circle.animate = function() {
+				console.log(x);
+				circle.topOffset = (stage.height - circle.height) * Math.sin(x)/2 + (stage.height/2 - circle.radius);
+				x += 0.05;
+				circle.element.style.top = circle.topOffset + "px";
+			};
+			circle.animateInterval = setInterval(circle.animate, 5);
 		},
 		function animation3(params) {
 			console.log("Animation 3");
@@ -61,8 +78,8 @@ window.onload = function() {
 
 		var stage = {
 			element: stageElement,
-			width: stageElement.offsetWidth,
-			height: stageElement.offsetHeight
+			width: 215, // hardcoded for now #TODO
+			height: 215
 		};
 
 		container.appendChild(stage.element);
